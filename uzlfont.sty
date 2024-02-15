@@ -1,0 +1,68 @@
+% !TeX root    = poster.tex
+% !TeX program = LuaLaTeX
+
+
+%%
+%% This is file 'uzlfont.sty'
+%%
+%% Copyright 2012 Christian Renner
+%%
+%% This file is part of the UzL-Script-bundle.
+%%
+%% This system is distributed in the hope that it will be useful,
+%% but WITHOUT ANY WARRANTY; without even the implied warranty of
+%% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+%%
+
+% Exit if the style file is already loaded
+% (suggested by Lee Shombert <las@potomac.wash.inmet.com>
+\ifx \uzlfontstyloaded\relax \endinput\else\let\uzlfontstyloaded\relax\fi
+
+\NeedsTeXFormat{LaTeX2e}[2009/09/24]
+\RequirePackage{svn-multi}[2011/08/20]
+\svnidlong
+{$HeadURL: $}
+{$LastChangedDate: $}
+{$LastChangedRevision: $}
+{$LastChangedBy: $}
+\svnid{$Id: $}
+
+\makeatletter
+
+\def\uzlfont@PackageName{uzlfont}
+\def\uzlfont@PackageDesc{Uni Luebeck font definitions}
+\def\uzlfont@PackageVersion{0.1}
+\def\uzlfont@PackageFullVersion{\uzlfont@PackageVersion\space(rev\space\svnfilerev)}
+
+\ProvidesPackage{\uzlfont@PackageName}[%
+  \svnfileyear/\svnfilemonth/\svnfileday\space%
+  v\uzlfont@PackageFullVersion\space\uzlfont@PackageDesc]
+\typeout{Package \uzlfont@PackageName, \csname ver@\uzlfont@PackageName.sty\endcsname%
+  ^^J\@spaces\@spaces\@spaces\@spaces\space\space
+  Copyright (C) Christian Renner, 2012-\svnfileyear^^J}
+
+%%% using key/value pairs as options to packages and classes
+\RequirePackage{kvoptions}
+
+%\SetupKeyvalOptions{%
+%  family=uzlfont,
+%  prefix=@uzlfont@
+%}
+
+\ProcessKeyvalOptions*\relax
+
+
+\RequirePackage{courier}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+%\RequirePackage{pifont} TODO needed?
+
+% UZL CI fonts
+\RequirePackage{MyriadPro/MyriadPro}
+\RequirePackage[lf,swash]{MinionPro/MinionPro}
+\renewcommand{\sfdefault}{MyriadPro}
+\renewcommand{\rmdefault}{MinionPro}
+\renewcommand{\familydefault}{\sfdefault}
+
+\makeatother
+\endinput

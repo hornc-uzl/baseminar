@@ -1,0 +1,66 @@
+% !TEX program = LuaLaTeX
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = en_US
+
+\begin{myverbbox}{\observewithouteid}
+CLIENT                                       SERVER
+  |                                            |
+  |------------- CON [MID=1, T=0xAB, OBS] ---->|
+  |                                            |
+  |<----- ACK [MID=1, T=0xAB, OBS=1] ----------|
+  |                                            |
+  |                             (Server IP changes)
+  |                                            |
+  |<----- CON [MID=3, T=0xAB, OBS=2] ----------|
+  |                                            |
+  |---------------------- empty RST [MID=3] -->|
+  |                                            |
+\end{myverbbox}
+
+
+\begin{myverbbox}{\observewitheid}
+CLIENT                                       SERVER
+  |                                            |
+  |----- CON [MID=1, T=0xAB, OBS, EID1=0xCD]-->|
+  |                                            |
+  |<-- ACK [MID=1, T=0xAB, OBS=1, EID2=0xCD]---|
+  |                                            |
+  |                                    (Server IP changes)
+  |                                            |
+  |<-- CON [MID=3, T=0xAB, OBS=2, EID2=0xCD] --|
+  |                                            |
+  |---------------------- empty ACK [MID=3] -->|
+  |                                            |
+\end{myverbbox}
+
+
+\begin{myverbbox}{\eidforclient}
+   CLIENT                                       SERVER
+      |                                            |
+      |---------------- CON [MID=1, T=0xAB, OBS]-->|
+      |                                            |
+      |<-- ACK [MID=1, T=0xAB, OBS=1, EID1=0xEF ---|
+      |                                            |
+(Client IP changes)                                |
+      |                                            |
+      |---- CON [MID=5, T=0xAB, OBS, EID2=0xEF] -->|
+      |                                            |
+      |<-- ACK [MID=5, T=0xAB] --------------------|
+      |                                            |
+\end{myverbbox}
+
+
+\begin{myverbbox}{\server}
+   CLIENT                                       SERVER
+    | \colorbox{white}{\ }                                          |
+    |----- CON [MID=1, T=0xAB, OBS, \colorbox{yellow}{\textbf{EID1=0xCD}}]-->|
+    | \colorbox{white}{\ }                                          |
+    |<-- ACK [MID=1, T=0xAB, OBS=1, \colorbox{yellow}{\textbf{EID2=0xCD}}]---|
+    | \colorbox{white}{\ }                                          |
+    | \colorbox{white}{\ }                                (Server IP changes)
+    | \colorbox{white}{\ }                                          |
+    |<-- CON [MID=5, T=0xAB, OBS=2, \colorbox{yellow}{\textbf{EID2=0xCD]}} --|
+    | \colorbox{white}{\ }                                          |
+    |---------------------- empty ACK\colorbox{white}{\ }[MID=5] -->|
+    | \colorbox{white}{\ }                                          |
+\end{myverbbox}
